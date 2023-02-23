@@ -83,26 +83,61 @@ The same process is followed for the asset identifier.
 The identifier is decomposed into its namespace, reference, and optional ID.
 Then, the resolver for the specified asset namespace is used to resolve the asset reference and ID.
 
+### JSON-LD Context
+
+The snippet below shows the context that the process of AssetDID resolution returns.
+
+```json
+{
+  "@protected": true,
+  "asset-did-spec": "https://github.com/KILTprotocol/spec-asset-did/blob/main/README.md",
+  "chain": {
+    "@id": "asset-did-spec:chain",
+    "@context": {
+      "namespace": "asset-did-spec:chain-namespace",
+      "reference": "asset-did-spec:chain-reference"
+    }
+  },
+  "id": "@id",
+  "namespace": "asset-did-spec:asset-namespace",
+  "reference": "asset-did-spec:asset-reference",
+  "identifier": "asset-did-spec:asset-identifier"
+}
+```
+
 As an example, the returned DID Document for [one of the CryptoKitties NFTs](https://opensea.io/assets/ethereum/0x06012c8cf97bead5deae237070f9587f8e7a266d/634446), identified with the Asset DID `did:asset:eip155:1.erc721:0x06012c8cf97bead5deae237070f9587f8e7a266d:634446`, is the following:
 
-<!-- TODO: Store the context somewhere and update this link when defined. -->
+<!-- TODO: Change context URL with IPFS link -->
 
 ```json
 {
   "@context": [
     "https://www.w3.org/ns/did/v1",
-    "https://kilt.io/asset-did-context.json"
+    {
+      "@protected": true,
+      "asset-did-spec": "https://github.com/KILTprotocol/spec-asset-did/blob/main/README.md",
+      "chain": {
+        "@id": "asset-did-spec:chain",
+        "@context": {
+          "namespace": "asset-did-spec:chain-namespace",
+          "reference": "asset-did-spec:chain-reference"
+        }
+      },
+      "id": "@id",
+      "namespace": "asset-did-spec:asset-namespace",
+      "reference": "asset-did-spec:asset-reference",
+      "identifier": "asset-did-spec:asset-identifier"
+    }
   ],
   "id": "did:asset:eip155:1.erc721:0x06012c8cf97bead5deae237070f9587f8e7a266d:634446",
   "chain": {
+    "id": "eip155:0",
     "namespace": "eip155",
     "reference": "0"
   },
-  "asset": {
-    "namespace": "erc721",
-    "reference": "0x06012c8cf97bead5deae237070f9587f8e7a266d",
-    "identifier": "634446"
-  }
+  "namespace": "erc721",
+  "reference": "0x06012c8cf97bead5deae237070f9587f8e7a266d",
+  "identifier": "634446"
 }
 ```
 
