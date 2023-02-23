@@ -90,19 +90,18 @@ The snippet below shows the context that the process of AssetDID resolution retu
 ```json
 {
   "@protected": true,
-  "id": "@id",
   "asset-did-spec": "https://github.com/KILTprotocol/spec-asset-did/blob/main/README.md",
   "chain": {
     "@id": "asset-did-spec:chain",
     "@context": {
       "namespace": "asset-did-spec:chain-namespace",
       "reference": "asset-did-spec:chain-reference"
-      }
-    },
-    "namespace": "asset-did-spec:asset-namespace",
-    "reference": "asset-did-spec:asset-reference",
-    "identifier": "asset-did-spec:asset-identifier"
+    }
   },
+  "id": "@id",
+  "namespace": "asset-did-spec:asset-namespace",
+  "reference": "asset-did-spec:asset-reference",
+  "identifier": "asset-did-spec:asset-identifier"
 }
 ```
 
@@ -114,7 +113,21 @@ As an example, the returned DID Document for [one of the CryptoKitties NFTs](htt
 {
   "@context": [
     "https://www.w3.org/ns/did/v1",
-    "https://github.com/KILTprotocol/spec-asset-did/blob/main/README.md"
+    {
+      "@protected": true,
+      "asset-did-spec": "https://github.com/KILTprotocol/spec-asset-did/blob/main/README.md",
+      "chain": {
+        "@id": "asset-did-spec:chain",
+        "@context": {
+          "namespace": "asset-did-spec:chain-namespace",
+          "reference": "asset-did-spec:chain-reference"
+        }
+      },
+      "id": "@id",
+      "namespace": "asset-did-spec:asset-namespace",
+      "reference": "asset-did-spec:asset-reference",
+      "identifier": "asset-did-spec:asset-identifier"
+    }
   ],
   "id": "did:asset:eip155:1.erc721:0x06012c8cf97bead5deae237070f9587f8e7a266d:634446",
   "chain": {
