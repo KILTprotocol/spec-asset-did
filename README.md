@@ -1,5 +1,3 @@
-[![](.maintain/media/kilt-header.png)](https://kilt.io)
-
 # Asset Decentralized Identifiers (DID) Method Specification
 
 ### Editors
